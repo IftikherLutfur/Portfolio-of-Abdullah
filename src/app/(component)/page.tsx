@@ -6,7 +6,7 @@ import Project from "./Project/page";
 
 export default function HomePage() {
   return (
-    <div className="py-20">
+    <div className="">
         <Banner/>
         <AboutMe/>
         <MySkills/>

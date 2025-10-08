@@ -3,6 +3,7 @@ import React from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Home, Settings, Bell, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 // --- Navbar Component ---
 
@@ -43,13 +44,8 @@ const menuItems: MenuItem[] = [
         gradient: "radial-gradient(circle, rgba(239,68,68,0.15) 0%, rgba(220,38,38,0.06) 50%, rgba(185,28,28,0) 100%)",
         iconColor: "group-hover:text-red-500 dark:group-hover:text-red-400",
     },
-    {
-        icon: <User className="h-5 w-5" />,
-        label: "Hire Me",
-        href: "#",
-        gradient: "radial-gradient(circle, rgba(239,68,68,0.15) 0%, rgba(220,38,38,0.06) 50%, rgba(185,28,28,0) 100%)",
-        iconColor: "group-hover:text-red-500 dark:group-hover:text-red-400",
-    },
+
+
 ];
 
 // Animation variants for different parts of the menu
@@ -163,8 +159,11 @@ function Navbar(): React.JSX.Element {
                 ))}
 
                 {/* Hire Me button একদম ডানে চলে যাবে */}
-                <li className="ml-auto">
+                <li className="ml-auto flex gap-2">
                     <Button>Hire Me</Button>
+                    <Button>
+                        <Link href={"/Login"}>Login</Link>
+                        </Button>
                 </li>
             </ul>
         </motion.nav>
