@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { Login } from "@/actions/auth";
+import { useRouter } from "next/navigation";
 
 const ChevronPatternIcon = () => (
     <svg
@@ -52,6 +54,7 @@ export default function LoginCard() {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+    const router = useRouter()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -60,6 +63,18 @@ export default function LoginCard() {
             password,
         };
 
+        try {
+            const res = await Login(values)
+            console.log(res)
+            if(res.success){
+        router.push("/")
+            } else{
+                console.error("Response Error:" ,res)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
         console.log("✅ Sending Login data:", values);
     }
 
