@@ -69,7 +69,7 @@ export default function LoginCard() {
             console.log(res)
             if (res.success) {
                 setUser(res.user)
-                router.push("/")
+                router.push("/Dashboard/BlogCreate")
             } else {
                 console.error("Response Error:", res)
             }

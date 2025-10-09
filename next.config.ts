@@ -9,7 +9,8 @@ const nextConfig: NextConfig = {
       "download.logo.wine",
       "repository-images.githubusercontent.com",
       "upload.wikimedia.org",
-      "encrypted-tbn0.gstatic.com"
+      "encrypted-tbn0.gstatic.com",
+      "images.unsplash.com"
     ]
   }
 };
