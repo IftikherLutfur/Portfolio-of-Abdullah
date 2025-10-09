@@ -4,6 +4,7 @@ import { motion, Variants } from 'framer-motion';
 import { Home, Settings, Bell, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useAuth } from '@/Providers/AuthProvider';
 
 // --- Navbar Component ---
 
@@ -90,6 +91,7 @@ const sharedTransition = {
 };
 
 function Navbar(): React.JSX.Element {
+    const {user} = useAuth()
     return (
         <motion.nav
             className="p-2 fixed z-20 w-full bg-white/60 dark:bg-black/60 backdrop-blur-lg border border-gray-200/80 dark:border-gray-800/80 shadow-lg dark:shadow-gray-900/20 overflow-hidden"
@@ -161,6 +163,7 @@ function Navbar(): React.JSX.Element {
                 {/* Hire Me button একদম ডানে চলে যাবে */}
                 <li className="ml-auto flex gap-2">
                     <Button>Hire Me</Button>
+                    <p>{user?.id}</p>
                     <Button>
                         <Link href={"/Login"}>Login</Link>
                         </Button>

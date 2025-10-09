@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-wrapper-object-types */
 "use client";
 import React, { useState } from "react";
@@ -5,6 +6,8 @@ import { Button } from "../ui/button";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { Login } from "@/actions/auth";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/Providers/AuthProvider";
+
 
 const ChevronPatternIcon = () => (
     <svg
@@ -44,9 +47,8 @@ const ChevronPatternIcon = () => (
     </svg>
 );
 
-
-
 export default function LoginCard() {
+    const {setUser} = useAuth()
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -62,14 +64,14 @@ export default function LoginCard() {
             email,
             password,
         };
-
         try {
             const res = await Login(values)
             console.log(res)
-            if(res.success){
-        router.push("/")
-            } else{
-                console.error("Response Error:" ,res)
+            if (res.success) {
+                setUser(res.user)
+                router.push("/")
+            } else {
+                console.error("Response Error:", res)
             }
 
         } catch (error) {
@@ -77,7 +79,6 @@ export default function LoginCard() {
         }
         console.log("✅ Sending Login data:", values);
     }
-
 
     return (
         <div className="font-sans antialiased text-gray-900 dark:text-white w-full flex items-center justify-center p-4">
@@ -178,7 +179,7 @@ export default function LoginCard() {
                 </form>
 
                 <p className="text-gray-500 dark:text-[#6C6A7B] text-sm text-center mt-4">
-                   {"If you don't have an account please go"} <a href="/Register" className="text-gray-900 dark:text-gray-100 font-medium hover:underline">Register</a>
+                    {"If you don't have an account please go"} <a href="/Register" className="text-gray-900 dark:text-gray-100 font-medium hover:underline">Register</a>
                 </p>
             </div>
         </div>
