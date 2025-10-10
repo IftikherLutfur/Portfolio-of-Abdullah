@@ -9,7 +9,7 @@ export default async function Project() {
     return (
         <div className="my-10">
             <h1 className="text-5xl my-10 font-bold text-center text-black dark:text-white1">Projects</h1>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="">
                 {projects.map((project: IProject) => (
                     <ProjectCard key={project._id} {...project} />
                 ))}

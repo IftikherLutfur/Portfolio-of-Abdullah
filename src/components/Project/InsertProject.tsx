@@ -4,6 +4,10 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import Modal from "../ui/modal";
 import { toast } from "sonner";
+import Image from "next/image";
+
+const CLOUDINARY_URL = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
+const UPLOAD_PRESET = process.env.NEXT_PUBLIC_UPLOAD_PRESET;
 
 const FormModalView: React.FC = () => {
   const [isProjectOpen, setIsProjectOpen] = useState(false);
@@ -13,16 +17,59 @@ const FormModalView: React.FC = () => {
     title: "",
     description: "",
     technology: "",
-    image: "",
+    images: [] as string[], // multiple images
   });
 
   // Handle input change
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  // Submit project form (POST request)
+  // Handle multiple image upload
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    if (files.length > 4) {
+      toast.error("You can upload up to 4 images only.");
+      return;
+    }
+
+    setLoading(true);
+    const uploadedUrls: string[] = [];
+
+    try {
+      for (const file of Array.from(files)) {
+        const formDataCloud = new FormData();
+        formDataCloud.append("file", file);
+        formDataCloud.append("upload_preset", UPLOAD_PRESET as string);
+
+        const res = await fetch(CLOUDINARY_URL as string, {
+          method: "POST",
+          body: formDataCloud,
+        });
+
+        const data = await res.json();
+
+        if (data.secure_url) {
+          uploadedUrls.push(data.secure_url);
+        }
+      }
+
+      setFormData((prev) => ({ ...prev, images: uploadedUrls }));
+      toast.success("All images uploaded successfully!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Image upload failed!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Submit project form to backend
   const handleProjectSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -32,19 +79,22 @@ const FormModalView: React.FC = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          ...formData,
-          technology: formData.technology.split(",").map((tech) => tech.trim()),
+          title: formData.title,
+          description: formData.description,
+          technology: formData.technology
+            ? formData.technology.split(",").map((tech) => tech.trim())
+            : [],
+          image: formData.images, // array of image URLs
         }),
       });
 
       const data = await res.json();
-      console.log("Response:", data);
 
       if (!res.ok) {
         toast.error(`Failed to submit project: ${data.message || "Unknown error"}`);
       } else {
         toast.success("✅ Project submitted successfully!");
-        setFormData({ title: "", description: "", technology: "", image: "" });
+        setFormData({ title: "", description: "", technology: "", images: [] });
         setIsProjectOpen(false);
       }
     } catch (error) {
@@ -58,7 +108,7 @@ const FormModalView: React.FC = () => {
   return (
     <div className="space-y-4">
       <Button onClick={() => setIsProjectOpen(true)} variant="default">
-        Add Project+
+        Add Project +
       </Button>
 
       {/* Project Form Modal */}
@@ -69,6 +119,7 @@ const FormModalView: React.FC = () => {
         size="lg"
       >
         <form onSubmit={handleProjectSubmit} className="space-y-4">
+
           {/* Title */}
           <div>
             <label htmlFor="title" className="block text-sm font-medium mb-1">
@@ -112,24 +163,41 @@ const FormModalView: React.FC = () => {
               value={formData.technology}
               onChange={handleChange}
               className="w-full border px-3 py-2 rounded-md"
-              placeholder="e.g., Next.js, Node.js"
+              placeholder="e.g., Next.js, Node.js, MongoDB"
               required
             />
           </div>
 
-          {/* Image URL */}
+          {/* Image Upload */}
           <div>
             <label htmlFor="image" className="block text-sm font-medium mb-1">
-              Image URL
+              Upload up to 4 Images Select 4 image together*
             </label>
             <input
-              type="text"
+              type="file"
               id="image"
-              value={formData.image}
-              onChange={handleChange}
+              accept="image/*"
+              multiple
+              onChange={handleImageUpload}
               className="w-full border px-3 py-2 rounded-md"
-              placeholder="Paste image URL"
+              required
             />
+
+            {/* Preview */}
+            {formData.images.length > 0 && (
+              <div className="grid grid-cols-2 gap-3 mt-3">
+                {formData.images.map((img, index) => (
+                  <Image
+                    key={index}
+                    src={img}
+                    width={200}
+                    height={200}
+                    alt={`Preview ${index + 1}`}
+                    className="w-full h-40 object-cover rounded-md"
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Buttons */}
@@ -142,7 +210,7 @@ const FormModalView: React.FC = () => {
               Cancel
             </Button>
             <Button type="submit" disabled={loading}>
-              {loading ? "Adding..." : "Add"}
+              {loading ? "Adding..." : "Add Project"}
             </Button>
           </div>
         </form>

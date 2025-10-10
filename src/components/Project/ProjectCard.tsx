@@ -1,14 +1,25 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client'
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { IProject } from "@/types/types";
 
-// Utility function (same as MagicContainer)
+// Assuming IProject type looks something like this based on the original code:
+// interface IProject {
+//   _id: string;
+//   title: string;
+//   technology: string[];
+//   description: string;
+//   image: string; // URL to the main project image
+//   category: string; // New: for "Visual Identity"
+//   date: string; // New: for "2024"
+//   // Add more fields as needed for other images or details
+// }
+
 const clsx = (...args: (string | boolean | undefined | null)[]): string =>
   args.filter(Boolean).join(" ");
 
-export default function ProjectCard(project: IProject) {
+export default function ProjectCard(project: IProject) { // Destructure project directly
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -23,64 +34,61 @@ export default function ProjectCard(project: IProject) {
   };
 
   return (
-    <div className="">
+    <div className="w-full max-w-7xl mx-auto py-8"> {/* Added max-width and vertical padding */}
       <div
         ref={containerRef}
-        className="relative rounded-3xl p-[1px] transition-all duration-300"
+        className="relative rounded-3xl p-[1px] transition-all duration-300 overflow-hidden" // Added overflow-hidden for rounded corners
         style={{
           background: isHovered
-            ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, #9E7AFF, #38bdf8, #FF5C5C, #FE8BBB, transparent 80%)`
+            ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, #FF5C5C, #FE8BBB, #F76B1C, #F76B1C, transparent 80%)` // Adjusted gradient colors to match the orange theme
             : "rgba(255, 255, 255, 0.05)",
         }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="border-2 border-gray-300 rounded-lg p-3 shadow-md hover:shadow-xl transition-shadow duration-300 bg-white dark:bg-gray-800 flex flex-col h-full">
+        <div className="rounded-3xl p-8 bg-[#fdfaf5] dark:bg-gray-800 flex flex-col lg:flex-row gap-8"> {/* Changed background color to match the beige, adjusted padding, and made it responsive */}
 
-          {/* Project Title */}
-          <h1 className="text-2xl font-semibold text-center my-2 text-black dark:text-white">
-            {project.title}
-          </h1>
+          {/* Left Section (Text and Project Details) */}
+          <div className="lg:w-2/5 flex flex-col">
 
-          {/* Project Image */}
-          {project.image && (
-            <Image
-              src={project.image}
-              alt={project.title}
-              width={500}
-              height={250}
-              className="rounded-md object-cover mb-4 mx-auto w-full"
-            />
-          )}
+            <h1 className="text-4xl font-bold text-black dark:text-white mb-4">
+              {project.title}
+            </h1>
 
-          {/* Technology Stack */}
-          <div className="flex flex-wrap justify-center gap-2 my-3">
-            {project.technology.map((tech: string, index: number) => (
-              <span
-                key={index}
-                className="bg-black text-white px-3 py-1 rounded-full text-sm hover:bg-amber-500 transition-colors duration-200"
-              >
-                {tech}
-              </span>
-            ))}
+            <p className="text-base text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+              {project.description}
+            </p>
+
+            <div className="mt-auto pt-4"> {/* Aligned date and studio to the bottom */}
+
+             <span className="flex gap-2">
+              {project?.technology?.map((tech: string, index: number) => (
+                <p className="bg-black text-white text-xs rounded-xl p-2 " key={index}>{tech}</p>
+              ))}
+             </span>
+            </div>
+            {/* Removed Technology Stack and Read More button from this layout as they are not in the reference image for this section */}
           </div>
 
-          {/* Description */}
-          <p className="text-sm text-gray-700 dark:text-gray-300 mb-4 text-center">
-            {project.description.length > 100
-              ? project.description.slice(0, 100) + "..."
-              : project.description}
-          </p>
-
-          {/* Read More button */}
-          <div className="mt-auto flex justify-end">
-            <Link
-              href={`/Project/${project._id}`}
-              className="text-amber-500 font-bold hover:underline"
-            >
-              Read More →
-            </Link>
+          {/* Right Section (Image Grid) */}
+          <div className="lg:w-3/5 grid grid-cols-2 gap-4">
+            {project.image?.map((img: string, index: number) => (
+              <div
+                key={index}
+                className="col-span-1 row-span-1 rounded-xl overflow-hidden shadow-md"
+              >
+                <Image
+                  src={img}
+                  alt={`${project.title || "Project"} Image ${index + 1}`}
+                  width={500}
+                  height={400}
+                  layout="responsive"
+                  objectFit="cover"
+                  className="w-full h-full"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

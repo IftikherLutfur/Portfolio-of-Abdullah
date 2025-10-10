@@ -4,6 +4,10 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import Modal from "../ui/modal";
 import { toast } from "sonner";
+import Image from "next/image";
+
+const CLOUDINARY_URL = process.env.NEXT_PUBLIC_CLOUDINARY_URL;
+const UPLOAD_PRESET = process.env.NEXT_PUBLIC_UPLOAD_PRESET;
 
 const FormModalView: React.FC = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -18,12 +22,46 @@ const FormModalView: React.FC = () => {
   });
 
   // Handle input change
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  // Submit contact form (POST request)
+  // Handle single image upload
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setLoading(true);
+    try {
+      const formDataCloud = new FormData();
+      formDataCloud.append("file", file);
+      formDataCloud.append("upload_preset", UPLOAD_PRESET as string);
+
+      const res = await fetch(CLOUDINARY_URL as string, {
+        method: "POST",
+        body: formDataCloud,
+      });
+
+      const data = await res.json();
+
+      if (data.secure_url) {
+        setFormData((prev) => ({ ...prev, image: data.secure_url }));
+        toast.success("✅ Image uploaded successfully!");
+      } else {
+        toast.error("Image upload failed!");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Image upload failed!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Submit blog form (POST request)
   const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
@@ -59,10 +97,10 @@ const FormModalView: React.FC = () => {
   return (
     <div className="space-y-4">
       <Button onClick={() => setIsContactOpen(true)} variant="default">
-        Add Blog+
+        Add Blog +
       </Button>
 
-      {/* Contact Form Modal */}
+      {/* Blog Form Modal */}
       <Modal
         isOpen={isContactOpen}
         onClose={() => setIsContactOpen(false)}
@@ -129,24 +167,37 @@ const FormModalView: React.FC = () => {
               value={formData.tags}
               onChange={handleChange}
               className="w-full border px-3 py-2 rounded-md"
-              placeholder="e.g., React.js, javascript"
+              placeholder="e.g., React.js, JavaScript"
               required
             />
           </div>
 
-          {/* Image URL */}
+          {/* Image Upload */}
           <div>
             <label htmlFor="image" className="block text-sm font-medium mb-1">
-              Image URL
+              Upload Image *
             </label>
             <input
-              type="text"
+              type="file"
               id="image"
-              value={formData.image}
-              onChange={handleChange}
+              accept="image/*"
+              onChange={handleImageUpload}
               className="w-full border px-3 py-2 rounded-md"
-              placeholder="Paste image URL"
+              required
             />
+
+            {/* Preview */}
+            {formData.image && (
+              <div className="mt-3">
+                <Image
+                  src={formData.image}
+                  width={200}
+                  height={200}
+                  alt="Preview"
+                  className="w-40 h-40 object-cover rounded-md border"
+                />
+              </div>
+            )}
           </div>
 
           {/* Buttons */}
@@ -159,7 +210,7 @@ const FormModalView: React.FC = () => {
               Cancel
             </Button>
             <Button type="submit" disabled={loading}>
-              {loading ? "Adding..." : "Add"}
+              {loading ? "Adding..." : "Add Blog"}
             </Button>
           </div>
         </form>
