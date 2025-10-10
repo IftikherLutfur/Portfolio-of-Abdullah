@@ -12,7 +12,7 @@ export interface IProject {
     title: string;
     technology: string[];
     description: string;
-    image: string;
+    image: string[];
     live_link?: string;
     Github_Link?: string;
 }

@@ -10,7 +10,7 @@ import { IProject } from "@/types/types";
 //   title: string;
 //   technology: string[];
 //   description: string;
-//   image: string; // URL to the main project image
+//   image: string[]; // Array of URLs to project images
 //   category: string; // New: for "Visual Identity"
 //   date: string; // New: for "2024"
 //   // Add more fields as needed for other images or details
@@ -73,7 +73,7 @@ export default function ProjectCard(project: IProject) { // Destructure project 
 
           {/* Right Section (Image Grid) */}
           <div className="lg:w-3/5 grid grid-cols-2 gap-4">
-            {project.image?.map((img: string, index: number) => (
+            {project?.image?.map((img: string, index: number) => (
               <div
                 key={index}
                 className="col-span-1 row-span-1 rounded-xl overflow-hidden shadow-md"
