@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import Modal from "../ui/modal";
+import { toast } from "sonner";
 
 const FormModalView: React.FC = () => {
   const [isProjectOpen, setIsProjectOpen] = useState(false);
@@ -40,15 +41,15 @@ const FormModalView: React.FC = () => {
       console.log("Response:", data);
 
       if (!res.ok) {
-        alert(`Failed to submit project: ${data.message || "Unknown error"}`);
+        toast.error(`Failed to submit project: ${data.message || "Unknown error"}`);
       } else {
-        alert("✅ Project submitted successfully!");
+        toast.success("✅ Project submitted successfully!");
         setFormData({ title: "", description: "", technology: "", image: "" });
         setIsProjectOpen(false);
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("❌ Something went wrong. Check console.");
+      toast.error("❌ Something went wrong. Check console.");
     } finally {
       setLoading(false);
     }

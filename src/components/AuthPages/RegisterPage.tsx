@@ -100,6 +100,7 @@ const RegisterPage: React.FC = () => {
             const res = await Register(values);
             console.log(res.success)
             if (res.data._id) {
+                toast.success("User create successfull")
                 router.push("/Login");
             } else {
                 console.error("Response:", res);

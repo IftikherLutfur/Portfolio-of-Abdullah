@@ -34,7 +34,7 @@ const BlogCard = (blog: IBlog) => {
 
     return (
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+        <div className="">
             <div
                 ref={containerRef}
                 className="relative rounded-3xl p-[1px] transition-all duration-300"
@@ -56,7 +56,8 @@ const BlogCard = (blog: IBlog) => {
                             alt={blog.title}
                             width={500}
                             height={300}
-                            className="rounded-md object-cover mb-4 mx-auto"
+                            unoptimized
+                            className="rounded-md object-cover mb-4 mx-auto w-full"
                         />
                     )}
 

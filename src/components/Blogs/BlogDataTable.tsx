@@ -13,6 +13,7 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import Modal from "../ui/modal";
 import InsertBlogData from "./InsertBlogData";
+import { toast } from "sonner";
 
 interface Blog {
     _id: string;
@@ -78,15 +79,15 @@ export default function BlogDataTable({ blogs }: BlogDataTableProps) {
             console.log("Update Response:", data);
 
             if (!res.ok) {
-                alert(`Update failed: ${data.message || "Unknown error"}`);
+                toast.error(`Update failed: ${data.message || "Unknown error"}`);
                 return;
             }
 
-            alert("✅ Blog updated successfully!");
+            toast.success("✅ Blog updated successfully!");
             setIsEditOpen(false);
         } catch (error) {
             console.error("Error updating blog:", error);
-            alert("❌ Something went wrong. Check console.");
+            toast.error("❌ Something went wrong. Check console.");
         }
     };
 
@@ -102,15 +103,15 @@ export default function BlogDataTable({ blogs }: BlogDataTableProps) {
         console.log("Delete Response:", data);
 
         if (!res.ok) {
-            alert(`Delete failed: ${data.message || "Unknown error"}`);
+            toast.error(`Delete failed: ${data.message || "Unknown error"}`);
             return;
         }
 
-        alert("✅ Blog deleted successfully!");
+        toast.success("✅ Blog deleted successfully!");
         setIsDeleteOpen(false);
     } catch (error) {
         console.error("Error deleting blog:", error);
-        alert("❌ Something went wrong. Check console.");
+        toast.error("❌ Something went wrong. Check console.");
     }
 };
 

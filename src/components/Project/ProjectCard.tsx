@@ -23,7 +23,7 @@ export default function ProjectCard(project: IProject) {
   };
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+    <div className="">
       <div
         ref={containerRef}
         className="relative rounded-3xl p-[1px] transition-all duration-300"
@@ -50,7 +50,7 @@ export default function ProjectCard(project: IProject) {
               alt={project.title}
               width={500}
               height={250}
-              className="rounded-md object-cover mb-4 mx-auto"
+              className="rounded-md object-cover mb-4 mx-auto w-full"
             />
           )}
 
@@ -68,7 +68,9 @@ export default function ProjectCard(project: IProject) {
 
           {/* Description */}
           <p className="text-sm text-gray-700 dark:text-gray-300 mb-4 text-center">
-            {project.description}
+            {project.description.length > 100
+              ? project.description.slice(0, 100) + "..."
+              : project.description}
           </p>
 
           {/* Read More button */}

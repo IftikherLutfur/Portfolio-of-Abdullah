@@ -7,6 +7,7 @@ import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { Login } from "@/actions/auth";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/Providers/AuthProvider";
+import { toast } from "sonner";
 
 
 const ChevronPatternIcon = () => (
@@ -69,7 +70,10 @@ export default function LoginCard() {
             console.log(res)
             if (res.success) {
                 setUser(res.user)
-                router.push("/Dashboard/BlogCreate")
+                toast.success("Login successful")
+                setTimeout(()=>{
+                    router.push("/Dashboard/BlogCreate")
+                }, 2000)
             } else {
                 console.error("Response Error:", res)
             }
@@ -91,10 +95,6 @@ export default function LoginCard() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-
-
-
-
                     <div className="signin-step space-y-4">
                         {/* Email field */}
                         <div className="space-y-2">

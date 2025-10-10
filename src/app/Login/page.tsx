@@ -1,3 +1,4 @@
+"use client"
 import LoginCard from '@/components/AuthPages/LoginPage'
 import React from 'react'
 

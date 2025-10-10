@@ -1,8 +1,12 @@
 import React from 'react';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import { signOut } from 'next-auth/react';
 
 export default function Sidebar() {
+    const handleForLogout = () => {
+        signOut()
+    }
     return (
         <div className="w-1/4 min-h-screen bg-white dark:bg-gray-900 border-r-2 border-amber-300 shadow-lg flex flex-col justify-between">
 
@@ -30,7 +34,13 @@ export default function Sidebar() {
 
             {/* Bottom Section */}
             <div className="px-4 pb-6">
-                <Button className="text-xl py-3 w-full bg-red-500 hover:bg-red-600 transition-colors duration-300">
+                
+                <Button className="text-xl py-3 w-full bg-green-500 hover:bg-green-600 transition-colors duration-300">
+                  <Link href={'/'}>
+                    Home
+                    </Link>
+                </Button>
+                <Button onClick={handleForLogout} className="text-xl py-3 w-full bg-red-500 hover:bg-red-600 transition-colors duration-300">
                     Logout
                 </Button>
             </div>

@@ -13,6 +13,7 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import Modal from "../ui/modal";
 import FormModalView from "./InsertProject";
+import { toast } from "sonner";
 
 interface Project {
     _id: string;
@@ -71,15 +72,15 @@ export default function ProjectTableData({ projects }: ProjectProps) {
 
             const data = await res.json();
             if (!res.ok) {
-                alert(`Update failed: ${data.message || "Unknown error"}`);
+                toast.error(`Update failed: ${data.message || "Unknown error"}`);
                 return;
             }
 
-            alert("✅ Project updated successfully!");
+            toast.success("✅ Project updated successfully!");
             setIsEditOpen(false);
         } catch (error) {
             console.error("Error updating project:", error);
-            alert("❌ Something went wrong. Check console.");
+            toast.error("❌ Something went wrong. Check console.");
         }
     };
 
@@ -93,15 +94,15 @@ export default function ProjectTableData({ projects }: ProjectProps) {
 
             const data = await res.json();
             if (!res.ok) {
-                alert(`Delete failed: ${data.message || "Unknown error"}`);
+                toast.error(`Delete failed: ${data.message || "Unknown error"}`);
                 return;
             }
 
-            alert("✅ Project deleted successfully!");
+            toast.success("✅ Project deleted successfully!");
             setIsDeleteOpen(false);
         } catch (error) {
             console.error("Error deleting project:", error);
-            alert("❌ Something went wrong. Check console.");
+            toast.error("❌ Something went wrong. Check console.");
         }
     };
 

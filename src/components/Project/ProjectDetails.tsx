@@ -16,7 +16,7 @@ export default function ProjectDetails(project:IProject) {
             alt={project.title}
             width={500}
             height={200}
-            className="rounded-md"
+            className="rounded-md w-full"
           />)
           }
         </div>

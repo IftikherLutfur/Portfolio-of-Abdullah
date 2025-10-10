@@ -23,8 +23,6 @@ const navGlowVariants: Variants = {
 
 
 function Navbar(): React.JSX.Element {
-    
-    const {user} = useAuth()
 
     return (
         <motion.nav
@@ -45,7 +43,6 @@ function Navbar(): React.JSX.Element {
                </li>
                 {/* Hire Me button একদম ডানে চলে যাবে */}
                 <li className="ml-auto flex gap-2">
-                    <Button>Hire Me</Button>
                     
                     <Button>
                         <Link href={"/Dashboard"}>

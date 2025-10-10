@@ -13,7 +13,8 @@ export default function BlogDetail(blog:IBlog) {
         alt={blog.title}
         width={500}
         height={200}
-        className="rounded-md"
+        className="rounded-md w-full"
+        
       />)
       }
     </div>

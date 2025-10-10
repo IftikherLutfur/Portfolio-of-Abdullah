@@ -9,10 +9,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ proj
 
     return (
         <div className="min-h-dvh py-20 ">
-
-            <h1 className="text-black text-center text-7xl font-bold">ProjectDetails</h1>
             <ProjectDetails {...project}/>
-
         </div>
     )
 }
