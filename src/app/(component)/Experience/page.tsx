@@ -94,7 +94,7 @@ export default function TimelinePage3({
 
               {/* Timeline Card */}
               <div className={`w-[45%] ${isRight ? "text-right pr-8" : "text-left pl-8"}`}>
-                <Card className="border-2">
+                <Card className="border-2 border-amber-400">
                   <h3 className={` ${item.title === "Looking for my first professional experience" ? "text-xl font-bold":"text-xl font-semibold"} text-gray-900 dark:text-white`}>
                     {item.title}
                   </h3>

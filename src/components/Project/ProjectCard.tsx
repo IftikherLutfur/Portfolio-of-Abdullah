@@ -52,8 +52,12 @@ export default function ProjectCard(project: IProject) { // Destructure project 
           {/* Left Section (Text and Project Details) */}
           <div className="lg:w-2/5 flex flex-col">
 
-            <h1 className="text-4xl font-bold text-black dark:text-white mb-4">
+            <h1 className="text-4xl font-bold text-black dark:text-white mb-2">
               {project.title}
+              <span className="flex gap-5 text-xl mt-2">
+                <a href="">Live Preview</a>
+                <a href="">Github</a>
+              </span>
             </h1>
 
             <p className="text-base text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">

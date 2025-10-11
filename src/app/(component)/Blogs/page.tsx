@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable react/no-children-prop */
 
 import BlogCard from "@/components/Blogs/BlogCard"
 

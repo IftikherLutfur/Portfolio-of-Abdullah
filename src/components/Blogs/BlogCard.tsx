@@ -55,22 +55,22 @@ const BlogCard = (blog: IBlog) => {
                             src={blog.image}
                             alt={blog.title}
                             width={500}
-                            height={300}
+                            height={200}
                             unoptimized
-                            className="rounded-md object-cover mb-4 mx-auto w-full"
+                            className="rounded-md object-cover h-96 mb-4 mx-auto"
                         />
                     )}
 
 
-                    <h1 className="text-2xl font-semibold mb-2 text-center text-black dark:text-white">
+                    <h1 className="text-xl font-semibold mb-2 text-black dark:text-white">
                         {blog.title}
                     </h1>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 text-center">
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 ">
                         Author: <span className="font-medium text-black dark:text-white">{blog.author}</span>
                     </p>
 
                     {/* Tags */}
-                    <div className="flex flex-wrap justify-center gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2 mb-4">
                         {blog.tags.map((tag: string, index: number) => (
                             <span
                                 key={index}

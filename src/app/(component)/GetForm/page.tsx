@@ -9,12 +9,10 @@ const Form = () => {
 
 
   return (
-    <div className="px-4 my-10  animate-fade-up animate-once">
+    <div className="px-4 my-10 animate-fade-up animate-once">
       <hr />
       <motion.div
-        className='shadow-2xl mt-5 p-4 rounded-md lg:flex items-center gap-6'
-        initial="offscreen"
-        whileInView="onscreen"
+        className='mt-5 p-4 rounded-md lg:flex px-20 items-center gap-6'
         viewport={{ once: true }}
         variants={{
           offscreen: { opacity: 0, y: 200 },
@@ -26,17 +24,17 @@ const Form = () => {
         }}
       >
         <div className='pl-2  flex-1'>
-          <h1 className='font-bold text-3xl gap-2  text-center md:text-left'>{"Let's discuss something cool together"}</h1>
-          <p className="flex items-center text-xl gap-1 text-center md:text-left "><MdEmail /> iftikherlutfur@gmail.com</p>
-          <p className="flex items-center text-xl gap-1 text-center md:text-left "><IoCall /> +8801966095405</p>
-          <ul className="flex gap-6 justify-center mt-4 md:justify-start">
-            <li className="text-2xl"><button><a href="https://github.com/IftikherLutfur"><FaGithub /></a></button></li>
-            <li className="text-2xl"><button><a href="https://www.linkedin.com/in/iftikher-lutfur-094a41256/"><FaLinkedin /></a></button></li>
-            <li className="text-2xl"><button><a href="https://www.facebook.com/Iftikherlutfur"><FaFacebookSquare /></a></button></li>
+          <h1 className='font-bold text-4xl gap-2 mb-4 md:text-left'>{"LET'S DISCUSS COOL SOMETHING TOGHETHER"}</h1>
+          <p className="flex items-center text-2xl font-semibold gap-1 text-center md:text-left my-2 "><MdEmail  className="bg-amber-400 text-black text-3xl rounded-md p-1"/> iftikherlutfur@gmail.com</p>
+          <p className="flex items-center my-4 text-2xl font-semibold gap-1 text-center md:text-left "><IoCall  className="bg-amber-400 text-black text-3xl rounded-md p-1"/> +8801966095405</p>
+          <ul className="flex gap-6 mt-6 md:justify-start">
+            <li className="text-2xl"><button><a href="https://github.com/IftikherLutfur"><FaGithub className="bg-amber-400 text-black p-1 rounded-md text-3xl" /></a></button></li>
+            <li className="text-2xl"><button><a href="https://www.linkedin.com/in/iftikher-lutfur-094a41256/"><FaLinkedin className="bg-amber-400 text-black p-1 rounded-md text-3xl" /></a></button></li>
+            <li className="text-2xl"><button><a href="https://www.facebook.com/Iftikherlutfur"><FaFacebookSquare className="bg-amber-400 text-black p-1 rounded-md text-3xl" /></a></button></li>
             <li><a href="https://drive.google.com/uc?export=download&id=1p2pmhDznwCt5luoIF2YmsX8m2RSwrJ19
 
 ">
-              <button className="bg-[#00bcd4]  px-2 py-1 rounded-sm flex items-center">
+              <button className="bg-[#000000] text-white  px-2 py-1 rounded-sm flex items-center">
                 Download CV<FaDownload />
               </button></a>
             </li>
@@ -54,7 +52,7 @@ const Form = () => {
             >
               <label htmlFor="" className=''><small>Name</small></label><br />
               <p className='absolute mt-2 pl-2 text-xl'><MdDriveFileRenameOutline /></p>
-              <input type="text" name='name' required placeholder='Enter your name' className='w-full h-9 px-9 bg-[#00bcd4]  border-gray-200 rounded-sm border-[1px]' />
+              <input type="text" name='name' required placeholder='Enter your name' className='w-full h-9 px-9 bg-[#fdfaf5]  border-amber-400 rounded-sm border-[1px]' />
             </motion.div>
 
             {/* Email Field */}
@@ -66,7 +64,7 @@ const Form = () => {
             >
               <label htmlFor="" className=''><small>Email</small></label><br />
               <p className='absolute mt-2 pl-2  text-xl'><MdEmail /></p>
-              <input type="email" name='email' required placeholder='Enter email' className='w-full h-9 px-9 bg-[#00bcd4]  border-gray-200 rounded-sm border-[1px]' />
+              <input type="email" name='email' required placeholder='Enter email' className='w-full h-9 px-9 bg-[#fdfaf5]  border-amber-400 rounded-sm border-[1px]' />
             </motion.div>
 
             {/* Message Field */}
@@ -77,7 +75,7 @@ const Form = () => {
               className="mt-4"
             >
               <label htmlFor="" className=''><small>Message</small></label><br />
-              <textarea placeholder='Write your message' required name='message'  className='w-full border bg-[#00bcd4]  border-gray-200 rounded-md p-3' />
+              <textarea placeholder='Write your message' required name='message'  className='w-full border bg-[#fdfaf5]  border-amber-400 rounded-md p-3' />
             </motion.div>
 
             {/* Submit Button */}
@@ -86,7 +84,7 @@ const Form = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               type="submit"
-              className=" bg-[#00bcd4] font-medium rounded-lg text-sm px-5 py-2.5 text-center w-full mt-4"
+              className=" bg-[#000001] text-white text-xl font-medium rounded-lg px-5 py-2.5 text-center w-full mt-4"
             >
               Submit
             </motion.button>
