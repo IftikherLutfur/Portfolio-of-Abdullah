@@ -77,7 +77,7 @@ export default function ProjectCard(project: IProject) { // Destructure project 
 
           {/* Right Section (Image Grid) */}
           <div className="lg:w-3/5 grid grid-cols-2 gap-4">
-  {Array.isArray(project.image)
+  {project.image
     ? project.image.map((img: string, index: number) => (
         <div
           key={index}
