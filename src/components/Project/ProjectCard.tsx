@@ -77,23 +77,28 @@ export default function ProjectCard(project: IProject) { // Destructure project 
 
           {/* Right Section (Image Grid) */}
           <div className="lg:w-3/5 grid grid-cols-2 gap-4">
-            {project?.image?.map((img: string, index: number) => (
-              <div
-                key={index}
-                className="col-span-1 row-span-1 rounded-xl overflow-hidden shadow-md"
-              >
-                <Image
-                  src={img}
-                  alt={`${project.title || "Project"} Image ${index + 1}`}
-                  width={500}
-                  height={400}
-                  layout="responsive"
-                  objectFit="cover"
-                  className="w-full h-full"
-                />
-              </div>
-            ))}
-          </div>
+  {Array.isArray(project.image)
+    ? project.image.map((img: string, index: number) => (
+        <div
+          key={index}
+          className="col-span-1 row-span-1 rounded-xl overflow-hidden shadow-md"
+        >
+          <Image
+            src={img}
+            alt={`${project.title || "Project"} Image ${index + 1}`}
+            width={500}
+            height={400}
+            layout="responsive"
+            objectFit="cover"
+            className="w-full h-full"
+          />
+        </div>
+      ))
+    : (
+        <p className="text-gray-500">No images available</p>
+      )}
+</div>
+
         </div>
       </div>
     </div>
