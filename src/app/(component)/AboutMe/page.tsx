@@ -43,7 +43,7 @@ const AboutMe = () => {
 
       {/* Text Section */}
       <div className="flex-1 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md p-6 rounded-xl shadow-lg text-start mt-5 md:mt-0">
-        <h1 className="text-3xl md:text-4xl font-bold text-black">
+        <h1 className="text-3xl md:text-4xl font-bold text-black dark:text-white">
           About Me
         </h1>
         <p className="mt-3 text-gray-700 dark:text-gray-300">

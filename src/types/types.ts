@@ -13,8 +13,9 @@ export interface IProject {
     technology: string[];
     description: string;
     image: string[];
-    live_link?: string;
-    Github_Link?: string;
+    liveLink?: string;
+    frontendGithubLink?: string;
+    backendGithubLink?: string;
 }
 
 export interface IUser {

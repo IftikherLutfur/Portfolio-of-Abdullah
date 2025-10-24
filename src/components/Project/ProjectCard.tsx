@@ -55,8 +55,9 @@ export default function ProjectCard(project: IProject) { // Destructure project 
             <h1 className="text-4xl font-bold text-black dark:text-white mb-2">
               {project.title}
               <span className="flex gap-5 text-xl mt-2">
-                <a href="">Live Preview</a>
-                <a href="">Github</a>
+                <a href={project?.liveLink}>Live Preview</a>
+                <a href={project.frontendGithubLink}>Frontend Code</a>
+                {project.backendGithubLink && <a href={project.backendGithubLink}>Backend Code</a>}
               </span>
             </h1>
 

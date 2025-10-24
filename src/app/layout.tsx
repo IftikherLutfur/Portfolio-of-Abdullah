@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/Providers/AuthProvider";
 import { Toaster } from "sonner";
+import { ThemeProvider } from "@/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -19,21 +20,18 @@ export const metadata: Metadata = {
   description: "Portfolio of Abdullah",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>)
-
-{
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F5F5F5]`}
-      >
+      {/* No need for hardcoded dark class here */}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <AuthProvider>
-          {children}
-          <Toaster position="top-center"/>
+          <ThemeProvider>
+            {children}
+            <Toaster position="top-center" />
+          </ThemeProvider>
         </AuthProvider>
       </body>
     </html>
