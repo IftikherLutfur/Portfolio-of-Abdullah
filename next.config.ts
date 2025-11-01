@@ -10,7 +10,10 @@ const nextConfig: NextConfig = {
       "repository-images.githubusercontent.com",
       "upload.wikimedia.org",
       "encrypted-tbn0.gstatic.com",
-      "images.unsplash.com"
+      "images.unsplash.com",
+      "git-scm.com",
+      "github.githubassets.com",
+      "git-scm.com"
     ]
   }
 };

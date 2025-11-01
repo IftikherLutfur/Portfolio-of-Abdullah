@@ -45,26 +45,26 @@ const Form = () => {
 
               {/* Email */}
               <p className="flex items-center text-base sm:text-xl font-semibold gap-2 mb-4 text-gray-800 dark:text-white">
-                <MdEmail className="bg-purple-200 text-purple-600 text-3xl rounded-lg p-1" />
+                <MdEmail className="bg-purple-700 text-white text-3xl rounded-lg p-1" />
                 iftikherlutfur@gmail.com
               </p>
 
               {/* Phone */}
               <p className="flex items-center text-base sm:text-xl font-semibold gap-2 mb-4 text-gray-800 dark:text-white">
-                <IoCall className="bg-purple-200 text-purple-600 text-3xl rounded-lg p-1" />
+                <IoCall className="bg-purple-700 text-white text-3xl rounded-lg p-1" />
                 +8801966095405
               </p>
 
               {/* Location */}
               <p className="flex items-center text-base sm:text-xl font-semibold gap-2 mb-4 text-gray-800 dark:text-white">
-                <span className="bg-purple-200 text-purple-600 rounded-lg p-1">
+                <span className="bg-purple-700 text-white rounded-lg p-1">
                   📍
                 </span>
                <small>Parmanent Address</small> : Habiganj, Bangladesh
               </p>
               {/* Location */}
               <p className="flex items-center text-base sm:text-xl font-semibold gap-2 mb-4 text-gray-800 dark:text-white">
-                <span className="bg-purple-200 text-purple-600 rounded-lg p-1">
+                <span className="bg-purple-700 text-white rounded-lg p-1">
                   📍
                 </span>
                <small>Current Address</small> : Gazipur, Bangladesh
@@ -82,7 +82,7 @@ const Form = () => {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <FaGithub className="bg-purple-200 text-purple-700 p-2 rounded-full text-4xl hover:scale-110 transition-transform" />
+                      <FaGithub className="bg-purple-700 p-1 text-4xl text-white rounded-md" />
                     </a>
                   </li>
                   <li>
@@ -91,7 +91,7 @@ const Form = () => {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <FaLinkedin className="bg-purple-200 text-purple-700 p-2 rounded-full text-4xl hover:scale-110 transition-transform" />
+                      <FaLinkedin className="bg-purple-700 p-1 text-4xl text-white rounded-md" />
                     </a>
                   </li>
                   <li>
@@ -100,12 +100,12 @@ const Form = () => {
                       target="_blank"
                       rel="noreferrer"
                     >
-                      <FaFacebookSquare className="bg-purple-200 text-purple-700 p-2 rounded-full text-4xl hover:scale-110 transition-transform" />
+                      <FaFacebookSquare className="bg-purple-700 p-1 text-4xl text-white rounded-md" />
                     </a>
                   </li>
                   <li>
                     <a
-                      href="https://drive.google.com/uc?export=download&id=1p2pmhDznwCt5luoIF2YmsX8m2RSwrJ19"
+                      href="https://drive.google.com/uc?export=download&id=1KL7AVGch3Vv-Zj8mVkGBjpIEikZf9hTV"
                       target="_blank"
                       rel="noreferrer"
                     >

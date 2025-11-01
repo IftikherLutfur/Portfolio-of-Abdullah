@@ -179,24 +179,24 @@ const Banner = () => {
                 <ul className="flex items-center justify-center lg:justify-start gap-6">
                             <li className="text-2xl hover:scale-110 transition-transform duration-300">
                               <a href="https://github.com/IftikherLutfur" target="_blank" rel="noopener noreferrer">
-                                <FaGithub className="bg-amber-400 p-1 text-4xl rounded-md" />
+                                <FaGithub className="bg-purple-700 p-1 text-4xl text-white rounded-md" />
                               </a>
                             </li>
                             <li className="text-2xl hover:scale-110 transition-transform duration-300">
                               <a href="https://www.linkedin.com/in/iftikher-lutfur-094a41256/" target="_blank" rel="noopener noreferrer">
-                                <FaLinkedin className="bg-amber-400 p-1 text-4xl rounded-md" />
+                                <FaLinkedin className="bg-purple-700 p-1 text-4xl text-white rounded-md" />
                               </a>
                             </li>
                             <li className="text-2xl hover:scale-110 transition-transform duration-300">
                               <a href="https://www.facebook.com/Iftikherlutfur" target="_blank" rel="noopener noreferrer">
-                                <FaFacebookSquare className="bg-amber-400 p-1 text-4xl rounded-md" />
+                                <FaFacebookSquare className="bg-purple-700 p-1 text-4xl text-white rounded-md" />
                               </a>
                             </li>
                             </ul>
               </button>
-              <button className="bg-black text-white px-2 py-2 rounded-sm">
+              <button className="bg-black dark:bg-white dark:text-black text-white px-2 py-2 rounded-sm">
                 <a
-                  href="https://drive.google.com/uc?export=download&id=1zTBOBJMIk0jcYL9azYZ6pyDJizxOp-0U"
+                  href="https://drive.google.com/uc?export=download&id=1KL7AVGch3Vv-Zj8mVkGBjpIEikZf9hTV"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mr-2 flex items-center gap-2"
