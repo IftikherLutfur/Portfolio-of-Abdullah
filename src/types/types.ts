@@ -8,6 +8,7 @@ export interface IBlog {
 }
 
 export interface IProject {
+
     _id: string;
     title: string;
     technology: string[];

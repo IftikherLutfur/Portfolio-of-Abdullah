@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { IProject } from "@/types/types";
+import { ExternalLinkIcon, GithubIcon } from "lucide-react";
 
 // Assuming IProject type looks something like this based on the original code:
 // interface IProject {
@@ -55,11 +56,17 @@ export default function ProjectCard(project: IProject) { // Destructure project 
             <h1 className="text-4xl font-bold text-black dark:text-white mb-2">
               {project.title}
               <span className="flex gap-5 text-xl mt-2">
-                <a href={project?.liveLink}>Live Preview</a>
-                <a href={project.frontendGithubLink}>Frontend Code</a>
-                {project.backendGithubLink && <a href={project.backendGithubLink}>Backend Code</a>}
+                <a href={project.liveLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors">
+                  <ExternalLinkIcon size={16} />
+                  <span className="text-sm">Live Demo</span>
+                </a>
+                <a href={project.frontendGithubLink} className="flex items-center gap-1 text-sm">
+                  <GithubIcon size={16} />Frontend Code</a>
+                {project.backendGithubLink && <a className="flex items-center gap-1 text-sm" href={project.backendGithubLink}>
+                  <GithubIcon size={16} />Backend Code</a>}
               </span>
             </h1>
+
 
             <p className="text-base text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
               {project.description}
@@ -67,38 +74,38 @@ export default function ProjectCard(project: IProject) { // Destructure project 
 
             <div className="mt-auto pt-4"> {/* Aligned date and studio to the bottom */}
 
-             <span className="flex gap-2">
-              {project?.technology?.map((tech: string, index: number) => (
-                <p className="bg-black text-white text-xs rounded-xl p-2 " key={index}>{tech}</p>
-              ))}
-             </span>
+              <span className="flex gap-2">
+                {project?.technology?.map((tech: string, index: number) => (
+                  <p className="bg-black text-white text-xs rounded-xl p-2 " key={index}>{tech}</p>
+                ))}
+              </span>
             </div>
             {/* Removed Technology Stack and Read More button from this layout as they are not in the reference image for this section */}
           </div>
 
           {/* Right Section (Image Grid) */}
           <div className="lg:w-3/5 grid grid-cols-2 gap-4">
-  {Array.isArray(project.image)
-    ? project.image.map((img: string, index: number) => (
-        <div
-          key={index}
-          className="col-span-1 row-span-1 rounded-xl overflow-hidden shadow-md"
-        >
-          <Image
-            src={img}
-            alt={`${project.title || "Project"} Image ${index + 1}`}
-            width={500}
-            height={400}
-            layout="responsive"
-            objectFit="cover"
-            className="w-full h-full"
-          />
-        </div>
-      ))
-    : (
-        <p className="text-gray-500">No images available</p>
-      )}
-</div>
+            {Array.isArray(project.image)
+              ? project.image.map((img: string, index: number) => (
+                <div
+                  key={index}
+                  className="col-span-1 row-span-1 rounded-xl overflow-hidden shadow-md"
+                >
+                  <Image
+                    src={img}
+                    alt={`${project.title || "Project"} Image ${index + 1}`}
+                    width={500}
+                    height={400}
+                    layout="responsive"
+                    objectFit="cover"
+                    className="w-full h-full"
+                  />
+                </div>
+              ))
+              : (
+                <p className="text-gray-500">No images available</p>
+              )}
+          </div>
 
         </div>
       </div>
